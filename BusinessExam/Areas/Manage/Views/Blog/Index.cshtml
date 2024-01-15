@@ -1,0 +1,39 @@
+﻿@model ReadBlogVM
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Blog Table</h6>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Create Time</th>
+                    <th>
+                        <a asp-action="Create" asp-controller="Blog" class="btn btn-success m-2">Create Blog</a>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.GetBlogs)
+                {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td><img src="~/Upload/Blog/@item.ImageUrl" style="width:50px ; height:50px"></td>
+                        <td>@item.CreatedAt</td>
+                        <td><a asp-action="Update" asp-controller="Blog" asp-route-id="@item.Id" class="btn btn-warning m-2">Update</a></td>
+                        <td><a asp-action="Delete" asp-controller="Blog" asp-route-id="@item.Id" class="btn btn-danger m-2">Delete</a></td>
+                    </tr>
+                }
+
+                <div class="alert alert-dark" style="color:red">@TempData["error"]</div>
+
+        
+            </tbody>
+        </table>
+    </div>
+</div>
